@@ -1,0 +1,43 @@
+#edit_user .mini_width {
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0;
+    min-height: calc(100vh - 100px);
+    padding: 30px 20px;
+}
+
+#edit_user .edit_title {
+    margin: 0 0 10px;
+}
+
+#edit_user .edit_wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#edit_user #error_explanation {
+    width: 100%;
+}
+
+#edit_user .field,
+#edit_user .password_field,
+#edit_user .edit_wrapper textarea {
+    width: 100%;
+}
+
+#edit_user .edit_wrapper textarea {
+    height: 170px;
+    font-size: 14px;
+    outline: none;
+}
+
+#edit_user .input_above {
+    margin-bottom: 5px;
+}
+
+#edit_user .return {
+    text-align: right;
+    font-size: 18px;
+    margin-top: 20px;
+}
+

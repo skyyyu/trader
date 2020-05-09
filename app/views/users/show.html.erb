@@ -1,0 +1,69 @@
+<div id="user_show">
+  <div class="large_width">
+    <div class="user_show_page">
+      <aside class="user_state">
+        <div class="user_state_top">
+          <% if @user.image? %>
+            <%= image_tag @user.image.url %>
+          <% else %>
+            <%= image_tag"no-image.png", id: "assets" %>
+          <% end %>
+          <h2 class="user_name"><%= @user.name %></h2>
+          <% if @user.id == current_user.id %>
+            <div class="edit_item">
+              <div class="logout">
+                <%= link_to destroy_user_session_path, method: :delete do %>
+                  <i class="fas fa-sign-out-alt"></i>
+                <% end %>
+              </div>
+              <%= link_to edit_user_registration_path do %>
+                <i class="fas fa-user-edit"></i>
+              <% end %>
+            </div>
+          <% else %>
+          <% end %>
+        </div>
+        <div class="col-md-8">
+        <p><%= @user.profile %></p>
+        </div>
+        <%= @user.follow_count %>
+        <%= link_to "フォロー", {controller: :users,action: :follow_list,user_id: @user.id}, method: :get %>
+        <%= @user.followers_count %>
+        <%= link_to "フォロワー", {controller: :users,action: :follower_list,user_id: @user.id}, method: :get %>
+
+        <% if current_user.id != @user.id %>
+          <%= render 'follow_form' %>
+        <% end %>
+        
+      </aside>
+      <% if @user.id == current_user.id %>
+      <% else %>
+        <% if @isRoom == true %>
+          <p><a href="/rooms/<%= @roomId %>">チャットへ</a>
+        <% else %>
+          <%= form_for @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, :value=> @user.id %>
+            <% end %>
+            <%= f.submit "チャットを始める" %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%# <h3>いいねしている投稿</h3>
+      <% @user.liked_posts.each do |post| %>
+        <%# <%= post.content %>
+      <%# <% end %> 
+    </div>
+    <div class="user_show_post">
+      <h3>投稿一覧</h3>
+      <table>
+        <tbody>
+          <% @user.posts.each do |post| %>
+            <%= render 'posts/card', post: post %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<div id="new_post">
+    <div class="new_post">
+        <div class="post_back">
+            <%= link_to '戻る', posts_path %>
+        </div>
+        <div class="large_width">
+            <h1>編集する</h1>
+            <%= render 'form', post: @post %>
+        </div>
+    </div>
+</div>

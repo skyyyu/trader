@@ -1,0 +1,59 @@
+<%= link_to "/posts/#{post.id}", class: "post_card_link" do %> 
+    <div class="post_card">
+        <div class="user_img">
+            <object>
+                <a href="<%= "/users/#{post.user.id}" %>">
+                    <% if post.user.image? %>
+                        <%= image_tag post.user.image.url %>
+                    <% else %>
+                        <%= image_tag"no-image.png", id: "assets" %>
+                    <% end %>
+                </a>
+            </object>
+        </div>
+        <div class="post_text">
+            <div class="post_user_name">
+                <object>
+                    <a href="<%= "/users/#{post.user.id}" %>">
+                        <%= post.user.name %>
+                    </a>
+                    <div class="card_date">
+                        <%= post.date %>
+                    </div>
+                </object>
+            </div>
+            <div class="card_display">
+                <div class="card_title">
+                    <%= post.title %>
+                </div>
+            </div>
+            <div class="card_bottom">
+                <div class="everyone_common">
+                    <div class="good">
+                        <% if current_user.already_liked?(post) %>
+                            <object>
+                                <%= button_to "/posts/#{post.id}/likes", method: :delete, remote: true do %>
+                                    <i class="fas fa-heart good_icon"></i>
+                                <% end %>
+                            </object>
+                        <% else %>
+                            <object>
+                                <%= button_to post_likes_path(post), method: :post, remote: true do %>
+                                    <i class="far fa-heart good_icon"></i>
+                                <% end %>
+                            </object>
+                        <% end %>
+                        <%= post.liked_users.count %>
+                    </div>
+                </div>
+                <% if current_user.id == post.user.id %>
+                    <object>
+                        <%= button_to post, method: :delete, data: { confirm: '削除してよろしいですか？' } do %>
+                            <i class="far fa-trash-alt"></i>
+                        <% end %>
+                    </object>
+                <% end %>
+            </div>
+        </div>
+    </div>
+<% end %>

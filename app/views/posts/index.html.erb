@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+<div id="post">
+  <div class="large_width">
+    <div class="main_post">
+    <%# <%= line_chart @post %> 
+      <table>
+        <tbody>
+          <% @posts.each do |post| %>
+          <%= render 'card', post: post %>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  $(function(){
+
+    function buildMESSAGE(post) {
+      if(post[0]){
+        $.each(post, function(index, value){
+          append_post = ""; 
+          //"<tr class='post_record' data-id=" + value.id + "><td>" + value.content + "(0)</td><td>" + link_to 'Show', post + "</td></tr>"
+          $('tbody').append(append_post);//対象要素.append( 追加したい要素 ) = tbodyにappend_postの内容を追加したい！
+          console.log(index + ':' + value.id + 'append');
+        })
+      }
+    }
+
+    $(function(){
+      setInterval(update, 10000);
+      //10000ミリ秒ごとにupdateという関数を実行する
+    });
+
+  console.log($('.post_record:last').data('id'));
+
+    function update(){
+     var post_id = $('.post_record:last').data('id'); //一番最後にある'post_record'というクラスの'id'というデータ属性を取得し、'post_id'という変数に代入
+      $.ajax({ //ajax通信で以下のことを行う
+        url: location.href, //urlは現在のページを指定
+        type: 'GET', //メソッドを指定
+        data: { //railsに引き渡すデータは
+          post: { id: post_id } //このような形(paramsの形をしています)で、'id'には'message_id'を入れる
+        },
+        dataType: 'json' //データはjson形式
+      })
+      .always(function(data){ //通信したら、成功しようがしまいが受け取ったデータを引数にとって以下のことを行う
+        buildMESSAGE(data);
+      });
+    }
+  });
+</script>

@@ -1,0 +1,39 @@
+#sign_up .signup,
+#forget_pas .forget_pas {
+    padding-top: 50px;
+}
+
+#sign_up .password_field,
+#forget_pas .forget_pas_page {
+    margin-top: 20px;
+}
+
+#forget_pas .forget_pas_page h1 {
+    font-size: 24px;
+}
+
+#sign_up .password_field label,
+#sign_up .password_field em {
+    display: block;
+    width: 66%;
+    margin: 0 auto 5px;
+    text-align: left;
+}
+
+#sign_up .actions,
+#forget_pas .actions {
+    width: 66%;
+    text-align: right;
+    margin: 0 auto;
+}
+
+#sign_up .actions input,
+#forget_pas .actions input {
+    width: 46%;
+    letter-spacing: 1px;
+    margin-top: 25px;
+}
+
+#forget_pas .actions input {
+    margin: 10px 0 20px;
+}

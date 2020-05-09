@@ -1,0 +1,75 @@
+<%= form_with(model: post, local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "エラー") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form_field">
+    <div class="post_form_wrapper">
+      <div class="post_form_day">
+        <p class="post_form_sub">日付</p>
+        <%= form.date_select :date, date_separator: '/' %>
+      </div>
+      <div class="post_form_title">
+        <p class="post_form_sub">タイトル</p>
+        <%= form.text_field :title %>
+      </div>
+      <div class="post_form_img">
+        <p class="post_form_sub">画像を投稿</p>
+        <%= form.file_field :img, id: :post_img  %>
+        <%= image_tag @post.img.url if @post.img? %>
+      </div>
+      <div class="post_img_view">
+        <%= image_tag @post.img.url, id: :img_prev if @post.img? %>
+        
+      </div>
+      <div class="post_form_range">
+        <div class="post_form_range_list">
+          <p class="post_form_sub">始値</p>
+          <%= form.number_field :open %>円
+        </div>
+        <div class="post_form_range_list">
+          <p class="post_form_sub">終値</p>
+          <%= form.number_field :close %>円
+        </div>
+      </div>
+      <div class="post_form_range">
+        <div class="post_form_range_list">
+          <p class="post_form_sub red">高値</p>
+          <%= form.number_field :high %>円
+        </div>
+        <div class="post_form_range_list">
+          <p class="post_form_sub blue">安値</p>
+          <%= form.number_field :low %>円
+        </div>
+      </div>
+      <div class="post_form_price">
+        <p class="post_form_sub">収益</p>
+        <%= form.number_field :price %>円
+      </div>
+      <div class="post_form_area">
+        <p class="post_form_sub">テクニカル分析</p>
+        <%= form.text_area :profit %>
+      </div>
+      <div class="post_form_area">
+        <p class="post_form_sub">NEWS</p>
+        <%= form.text_area :news %>
+      </div>
+      <div class="post_form_area">
+        <p class="post_form_sub">勝敗に関する要因</p>
+        <%= form.text_area :factor %>
+      </div>
+    </div>
+    
+
+    <div class="actions">
+      <%= form.submit "送信する" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<div id="user_list">
+  <div class="large_width">
+    <div class="user_list">
+      <div class="search_form">
+        <%= search_form_for @posts_search do |f| %>
+          <div class="search_field">
+            <%= f.search_field :content_cont, placeholder: 'キーワード検索' %>
+            <%= f.submit "検索" %>
+          </div>
+        <% end %>
+        <%= search_form_for @search ,url: "/users" do |f| %>
+          <div class="search_field">
+            <%= f.search_field :name_cont, placeholder: 'ユーザー検索' %>
+            <%= f.submit "検索" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="user_name_list">
+        <% @users.each do |user| %>
+          <div class="search_result">
+            <%= link_to "/users/#{user.id}" do %>
+              <div class="search_box">
+                <div class="user_img">
+                  <% if @user.image? %>
+                    <%= image_tag @user.image.thumb.url %>
+                  <% else %>
+                    <%= image_tag"no-image.png", id: "assets" %>
+                  <% end %>
+                </div>
+                <div class="search_state">
+                  <div class="search_name">
+                    <%= user.name %>
+                  </div>
+                  <div class="search_content">
+                    <%= user.profile %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

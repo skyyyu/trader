@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sns</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+    <script src="Chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="header">
+      <header>
+        <div class="header_bar">
+          <% if user_signed_in? %>
+            <h1>
+              <a href="/posts">HOME</a>
+            </h1>
+          <% else %>
+            <h1>投稿サイト</h1>
+          <% end %>
+          
+          <div class="header_right">
+            <% if user_signed_in? %>
+              <thead>
+                <div class="search_form">
+                  <%= search_form_for @search do |f| %>
+                    <div class="search_field">
+                      <%= f.search_field :title_cont, placeholder: 'キーワード検索' %>
+                      <%= f.submit "検索" %>
+                    </div>
+                  <% end %>
+
+                  <%= search_form_for @search ,url: "/users" do |f| %>
+                    <div class="search_field">
+                      <%= f.search_field :name_cont, placeholder: 'ユーザー検索' %>
+                      <%= f.submit "検索" %>
+                    </div>
+                  <% end %>
+                </div>
+              </thead>
+              <div class="header_icon">
+                <a href="<%= "/users/#{current_user.id}" %>">
+                  <% if current_user.image? %>
+                      <%= image_tag current_user.image.url %>
+                  <% else %>
+                      <%= image_tag"no-image.png", id: "assets" %>
+                  <% end %>
+                </a>
+              </div>
+              <div class="new_post_link">
+                <%= link_to '投稿する', new_post_path %>
+              </div>
+            <% else %>
+              <a href="/users/sign_up">新規作成</a>
+              <a href="/users/sign_in">ログイン</a>
+            <% end %>
+          </div>
+        </div>
+        <canvas id="myChart"></canvas>
+        <%= line_chart Post.where(user_id: current_user.id).group("date(created_at)").count %>
+      </header>
+    </div>
+    <div class="wrapper">
+      <%= yield %>
+    </div>
+    <script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: date ,
+          datasets: [{
+            label: '収益',
+            data: price ,
+            backgroundColor: "rgba(153,255,51,0.4)"
+          }]
+        }
+      });
+
+      
+      $(function() {
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            $('#img_prev').attr('src', e.target.result);
+          }
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+      $("#post_img").change(function(){
+        readURL(this);
+      });
+      });
+    </script>
+  </body>
+</html>
+
+

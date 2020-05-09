@@ -1,0 +1,202 @@
+#post_show .large_width {
+    padding: 0;
+}
+
+#post_show .show_card_bottom {
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+    font-size: 15px;
+}
+
+#post_show .show_card_bottom i {
+    font-size: 15px;
+}
+
+#post_show .good_field {
+    align-items: center;
+    display: flex;
+}
+
+#post_show .good_field a {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    padding: 0;
+}
+
+#post_show .good_icon,
+#post_show .good_field input {
+    color: red;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+}
+
+#post_show .good_count {
+    margin-left: 7px;
+}
+
+#post_show .post_show_current_user {
+    display: flex;
+    width: 33%;
+    justify-content: space-between;
+}
+
+#post_show .good_user {
+    border-top: solid 1px #ddd;
+    margin-top: 18px;
+}
+
+#post_show .post_show_img {
+    position: fixed;
+    top: 0;
+    background-color: #fff;
+    width: 75%;
+}
+
+#post_show .chart_show {
+    display: flex;
+    padding: 0 30px;
+    justify-content: space-between;
+}
+
+#post_show .post_show_img img {
+    object-fit: contain;
+    height: 300px;
+}
+
+#post_show .chart_show_price {
+    width: 32%;
+    padding-top: 30px;
+}
+
+#post_show .price_list,
+#post_show .price_state {
+    display: flex;
+    justify-content: space-between;
+}
+
+#post_show .price_list {
+    margin-bottom: 20px;
+}
+
+#post_show .price_state .post_form_data {
+    margin-left: 5px;
+}
+
+
+#post_show .post_show_state {
+    margin-top: 374px;
+}
+
+#post_show .post_show {
+    width: 100%;
+    padding:0 30px 20px;
+}
+
+#post_show .post_show_card {
+    display: block;
+    padding: 20px 0;
+}
+
+#post_show .post_show_top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+#post_show .user_img {
+    width: 60px;
+    height: 60px;
+}
+
+#post_show .user_img form {
+    height: 100%;
+}
+
+#post_show .user_img a {
+    width: 100%;
+    height: 60px;
+    border-radius: 30px;
+    display: block;
+}
+
+#post_show .user_img img {
+    border-radius: 30px;
+}
+
+#post_show .post_user_name {
+    margin-left: 5px;
+}
+
+#post_show .post_user_name a {
+    font-size: 24px;
+}
+
+#post_show .post_form_date {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+#post_show .post_title {
+    font-size: 27px;
+    margin: 15px 0 40px;
+    font-weight: bold;
+    padding-bottom: 15px;
+    border-bottom: solid 1px #ddd;
+}
+
+#post_show .post_form_list {
+    display: block;
+    margin-top: 40px;
+}
+
+#post_show .post_form_data,
+#post_show .post_form_data_area {
+    font-size: 16px;
+}
+
+#post_show .post_form_data_area {
+    min-height: 120px;
+    white-space: pre-line;
+}
+
+#post_show .post_form_sub {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    display: inline-block;
+    border-bottom: solid 2px #ddd;
+}
+
+#post_show .good_user_link {
+    border-bottom: solid 1px #ddd;
+    display: block;
+}
+
+#post_show .good_user_link:hover {
+    background-color: rgb(245, 248, 250);
+    opacity: 1;
+}
+
+#post_show .good_user_link:last-of-type {
+    border-bottom: none;
+}
+
+#post_show .good_user_title {
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+#post_show .good_user_list {
+    display: flex;
+    align-items: center;
+    padding: 10px 0 15px 30px;
+}
+
+#post_show .good_user_name {
+    margin-left: 10px;
+    font-size: 17px;
+}

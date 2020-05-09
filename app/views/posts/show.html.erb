@@ -1,0 +1,144 @@
+<p id="notice"><%= notice %></p>
+<div id="post_show">
+  <div class="large_width">
+    <div class="post_show_img">
+      <div class="post_back">
+        <%= link_to '戻る', posts_path %>
+        <div class="show_card_bottom">
+          <%= @post.created_at.to_s(:datetime_base) %>
+          <div class="good_field">
+            <% if current_user.already_liked?(@post) %>
+              <%= button_to "/posts/#{@post.id}/likes", method: :delete do %>
+                <i class="fas fa-heart good_icon"></i>
+              <% end %>
+            <% else %>
+              <%= button_to post_likes_path(@post) do %>
+                <i class="far fa-heart good_icon"></i>
+              <% end %>
+            <% end %>
+            <div class="good_count">
+              <%= @post.likes.count %>
+            </div>
+          </div>
+          <div class="post_show_current_user">
+            <% if current_user.id == @post.user.id %>
+              <%= link_to '編集する', edit_post_path(@post) %> 
+              <%= link_to @post, method: :delete, data: { confirm: '削除してよろしいですか？' } do %>
+                  <i class="far fa-trash-alt"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="chart_show">
+        <% if @post.img? %>
+            <%= image_tag @post.img.url %>
+        <% else %>
+            <%= image_tag"no-image.png", id: "assets" %>
+        <% end %>
+        <div class="chart_show_price">
+          <div class="price_list">
+            <div class="price_state">
+              <p class="post_form_sub">始値</p>
+              <p class="post_form_data">
+                <%= @post.open %>円
+              </p>
+            </div>
+            <div class="price_state">
+              <p class="post_form_sub">終値</p>
+              <p class="post_form_data">
+                <%= @post.close %>円
+              </p>
+            </div>
+          </div>
+          <div class="price_list">
+            <div class="price_state">
+              <p class="post_form_sub red">高値</p>
+              <p class="post_form_data">
+                <%= @post.high %>円
+              </p>
+            </div>
+            <div class="price_state">
+              <p class="post_form_sub blue">安値</p>
+              <p class="post_form_data">
+                <%= @post.low %>円
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="post_show_state">
+      <div class="post_show">
+        <div class="post_show_card">
+          <div class="post_show_top">
+            <div class="user_img">
+              <%= link_to "/users/#{@post.user.id}" do %>
+                <% if @post.user.image? %>
+                    <%= image_tag @post.user.image.url %>
+                <% else %>
+                    <%= image_tag"no-image.png", id: "assets" %>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="post_user_name">
+              <%= link_to "/users/#{@post.user.id}" do %>
+                <%= @post.user.name %>
+              <% end %>
+            </div>
+          </div>
+          <p class="post_form_date">
+            <%= @post.date %>
+          </p>
+          <h2 class="post_title">
+            <%= @post.title %>
+          </h2>
+          <div class="post_form_list">
+            <p class="post_form_sub">収益</p>
+            <p class="post_form_data">
+              <%= @post.price %>円
+            </p>
+          </div>
+          <div class="post_form_list">
+            <p class="post_form_sub">テクニカル分析</p>
+            <p class="post_form_data_area">
+              <%= @post.profit %>
+            </p>
+          </div>
+          <div class="post_form_list">
+            <p class="post_form_sub">NEWS</p>
+            <p class="post_form_data_area">
+              <%= @post.news %>
+            </p>
+          </div>
+          <div class="post_form_list">
+            <p class="post_form_sub">取引内容</p>
+            <p class="post_form_data_area">
+              <%= @post.factor %>
+            </p>
+          </div>
+        </div>
+        </div>
+        <!-- <div class="good_user">
+          <% @post.liked_users.each do |user| %>
+            <h2 class="good_user_title">いいねしたユーザー</h2>
+            <%= link_to "/users/#{user.id}", class: "good_user_link" do %>
+              <div class="good_user_list">
+                <div class="user_img">
+                  <% if @post.user.image? %>
+                    <%= image_tag @post.user.image.url %>
+                  <% else %>
+                    <%= image_tag"no-image.png", id: "assets" %>
+                  <% end %>
+                </div>
+                <div class="good_user_name">
+                  <%= user.name %>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

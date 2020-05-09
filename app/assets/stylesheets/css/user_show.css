@@ -1,0 +1,52 @@
+#user_show .large_width {
+    padding: 60px 0 0;
+}
+
+#user_show .user_show_page {
+    padding: 0 30px;
+}
+
+#user_show .user_state_top {
+    display: flex;
+    width: 100%;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#user_show .user_state_top img {
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    border-radius: 40px;
+    object-fit: cover;
+    border: solid 1px #ddd;
+}
+
+#user_show .user_name {
+    font-size: 25px;
+}
+
+#user_show .edit_item {
+    width: 80px;
+    justify-content: space-between;
+    display: flex;
+    margin-left: auto;
+    font-size: 27px;
+}
+
+#user_show .user_show_post {
+    margin-top: 20px;
+}
+
+#user_show .user_show_post h3 {
+    font-size: 18px;
+    margin: 0;
+    padding: 15px 30px;
+    border-top: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+}
+
+#user_show .post_card {
+    padding: 15px 30px;
+}

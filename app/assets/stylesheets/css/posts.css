@@ -1,0 +1,25 @@
+#post .post  {
+    padding-top: 7px;
+}
+
+#post .large_width {
+    padding: 60px 0 0;
+}
+
+#post .new_post_link  {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+#post .new_post_link a {
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px;
+    font-size: 18px;
+}
+
+#post .main_post {
+    width: 100%;
+}

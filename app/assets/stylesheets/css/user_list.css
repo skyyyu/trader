@@ -1,0 +1,35 @@
+#user_list .user_list {
+    display: flex;
+}
+
+#user_list .user_name_list {
+    padding: 0 30px;
+    width: 70%;
+}
+
+#user_list .search_result {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+#user_list .search_result a {
+    font-size: 20px;
+}
+
+#user_list .search_box {
+    display: flex;
+}
+
+#user_list .search_state {
+    margin-left: 10px;
+}
+
+#user_list .search_name {
+    margin-bottom: 5px;
+}
+
+#user_list .search_content {
+    font-size: 18px;
+}
+
