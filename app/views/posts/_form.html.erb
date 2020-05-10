@@ -22,12 +22,10 @@
       </div>
       <div class="post_form_img">
         <p class="post_form_sub">画像を投稿</p>
-        <%= form.file_field :img, id: :post_img  %>
-        <%= image_tag @post.img.url if @post.img? %>
+        <%= form.file_field :img, id: :myImage  %>
       </div>
       <div class="post_img_view">
-        <%= image_tag @post.img.url, id: :img_prev if @post.img? %>
-        
+        <img id="preview">
       </div>
       <div class="post_form_range">
         <div class="post_form_range_list">
@@ -73,3 +71,12 @@
     </div>
   </div>
 <% end %>
+<script>
+  $('#myImage').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        $("#preview").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  });
+</script>
