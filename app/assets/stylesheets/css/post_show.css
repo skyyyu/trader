@@ -154,7 +154,8 @@
 
 #post_show .post_form_data,
 #post_show .post_form_data_area {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 26px;
 }
 
 #post_show .post_form_data_area {
