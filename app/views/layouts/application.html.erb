@@ -48,18 +48,21 @@
                 </div>
               </thead>
               <div class="header_icon">
-                <a href="<%= "/users/#{current_user.id}" %>">
+                <a href="<%= "/users/#{current_user.id}" %>" class="header_user_img">
                   <% if current_user.image? %>
                       <%= image_tag current_user.image.url %>
                   <% else %>
                       <%= image_tag"no-image.png", id: "assets" %>
                   <% end %>
                 </a>
+                <a href="<%= "/users/#{current_user.id}" %>" class="header_user_name">
+                  <%= current_user.name %>
+                  </a>
               </div>
               <div class="new_post_link">
                 <%= link_to '投稿する', new_post_path %>
               </div>
-              <%= line_chart Post.where(user_id: current_user.id).group("date(date)").count %>
+              <%= line_chart Post.where(user_id: current_user.id).group(:date).sum(:price), autoSkip: true, suggestedMax: 5 %>
             <% else %>
               <a href="/users/sign_up">新規作成</a>
               <a href="/users/sign_in">ログイン</a>
