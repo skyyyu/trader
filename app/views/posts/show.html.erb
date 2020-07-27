@@ -1,9 +1,8 @@
-<p id="notice"><%= notice %></p>
+
 <div id="post_show">
   <div class="large_width">
     <div class="post_show_img">
       <div class="post_back">
-        <%= link_to '戻る', posts_path %>
         <div class="show_card_bottom">
           <%= @post.created_at.to_s(:datetime_base) %>
           <div class="good_field">
@@ -27,43 +26,6 @@
                   <i class="far fa-trash-alt"></i>
               <% end %>
             <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="chart_show">
-        <% if @post.img? %>
-            <%= image_tag @post.img.url %>
-        <% else %>
-            <%= image_tag"no-image.png", id: "assets" %>
-        <% end %>
-        <div class="chart_show_price">
-          <div class="price_list">
-            <div class="price_state">
-              <p class="post_form_sub">始値</p>
-              <p class="post_form_data">
-                <%= @post.open %>円
-              </p>
-            </div>
-            <div class="price_state">
-              <p class="post_form_sub">終値</p>
-              <p class="post_form_data">
-                <%= @post.close %>円
-              </p>
-            </div>
-          </div>
-          <div class="price_list">
-            <div class="price_state">
-              <p class="post_form_sub red">高値</p>
-              <p class="post_form_data">
-                <%= @post.high %>円
-              </p>
-            </div>
-            <div class="price_state">
-              <p class="post_form_sub blue">安値</p>
-              <p class="post_form_data">
-                <%= @post.low %>円
-              </p>
-            </div>
           </div>
         </div>
       </div>
@@ -93,6 +55,13 @@
           <h2 class="post_title">
             <%= @post.title %>
           </h2>
+            <div class="post_show_img">
+              <% if @post.img? %>
+                  <%= image_tag @post.img.url %>
+              <% else %>
+                  <%= image_tag"no-image.png", id: "assets" %>
+              <% end %>
+            </div>
           <div class="post_form_list">
             <p class="post_form_sub">収益</p>
             <p class="post_form_data">
@@ -119,6 +88,65 @@
           </div>
         </div>
         </div>
+        <div class="side_bar">
+          <thead>
+            <div class="search_form">
+              <%= search_form_for @search do |f| %>
+                <div class="search_field">
+                  <%= f.search_field :title_cont, placeholder: 'キーワード検索' %>
+                  <%= f.submit "検索" %>
+                </div>
+              <% end %>
+
+              <%= search_form_for @search ,url: "/users" do |f| %>
+                <div class="search_field">
+                  <%= f.search_field :name_cont, placeholder: 'ユーザー検索' %>
+                  <%= f.submit "検索" %>
+                </div>
+              <% end %>
+              <%= line_chart Post.where(user_id: current_user.id).group(:date).limit(5).sum(:price) %>
+              <div class="chart_show">
+                <div id="img_fix">
+                  <% if @post.img? %>
+                      <%= image_tag @post.img.url %>
+                  <% else %>
+                      <%= image_tag"no-image.png", id: "assets" %>
+                  <% end %>
+                </div>
+                <div class="chart_show_price">
+                  <div class="price_list">
+                    <div class="price_state">
+                      <p class="post_form_sub">始値</p>
+                      <p class="post_form_data">
+                        <%= @post.open %>円
+                      </p>
+                    </div>
+                    <div class="price_state">
+                      <p class="post_form_sub">終値</p>
+                      <p class="post_form_data">
+                        <%= @post.close %>円
+                      </p>
+                    </div>
+                  </div>
+                  <div class="price_list">
+                    <div class="price_state">
+                      <p class="post_form_sub red">高値</p>
+                      <p class="post_form_data">
+                        <%= @post.high %>円
+                      </p>
+                    </div>
+                    <div class="price_state">
+                      <p class="post_form_sub blue">安値</p>
+                      <p class="post_form_data">
+                        <%= @post.low %>円
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </thead>
+        </div>
         <!-- <div class="good_user">
           <% @post.liked_users.each do |user| %>
             <h2 class="good_user_title">いいねしたユーザー</h2>
@@ -142,3 +170,19 @@
     </div>
   </div>
 </div>
+
+<script>
+  $(function(){
+    var fix = $("#img_fix");             //メニューオブジェクトを格納
+    var fixTop = fix.offset().top;             //メニューの縦座標を格納
+    $(window).scroll(function () {             //スクロールが発生したら開始
+      if($(window).scrollTop() >= fixTop) {    //スクロール時の縦座標がメニューの縦座標以上なら…
+        fix.css("position","fixed");           //メニューに position:fixed 付与
+        fix.css("top","0");                    //メニューに top:0 付与
+      } else {
+        fix.css("position","");                //メニューの position を空に
+        fix.css("top","");                     //メニューの top を空に
+      }
+    });
+  });
+</script>

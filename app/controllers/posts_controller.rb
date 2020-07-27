@@ -8,6 +8,16 @@ class PostsController < ApplicationController
     @like = Like.new
     @search = @posts.ransack(params[:q])
     @posts = @search.result(distinct: true)
+ 
+    @all_ranks = Post.find(Like.group(:post_id).where(created_at: Date.today.in_time_zone.all_day).order('count(post_id) desc').limit(3).pluck(:post_id))
+
+    # like_array = []
+    # Like.where(created_at: Date.yesterday.in_time_zone.all_day).each do |like|
+    #   like_array.push(like.post_id)
+    #   puts (like.post_id)
+    # end
+    # @like_array = like_array.group_by(&:itself).map{ |key, value| [key, value.count] }.to_h
+
 
     respond_to do |format| 
       format.html {render template: "posts/index"}
@@ -16,6 +26,7 @@ class PostsController < ApplicationController
   end
 
   def timeline
+    @test = 'test'
     @posts = Post.all
     @like = Like.new
     @search = @posts.ransack(params[:q])
@@ -29,11 +40,13 @@ class PostsController < ApplicationController
 
     @posts = @posts.where(user_id: array)
 
+   
     respond_to do |format| 
       format.html {render template: "posts/index"}
       format.json { render json: @new_post = Post.where(user_id: array).where('id > ?', params[:post][:id]) } # json形式でアクセスがあった場合は、params[:message][:id]よりも大きいidがないかMessageから検索して、@new_messageに代入する
 
     end
+
       
   end
 

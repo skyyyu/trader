@@ -7,6 +7,7 @@
     justify-content: space-between;
     width: 60%;
     font-size: 15px;
+    margin-left: auto;
 }
 
 #post_show .show_card_bottom i {
@@ -49,25 +50,26 @@
 }
 
 #post_show .post_show_img {
-    position: fixed;
-    top: 0;
     background-color: #fff;
-    width: 75%;
+    width: 100%;
 }
 
 #post_show .chart_show {
-    display: flex;
-    padding: 0 30px;
-    justify-content: space-between;
+    margin-top: 30px;
+}
+
+#post_show .chart_show img {
+    width: 100%;
 }
 
 #post_show .post_show_img img {
     object-fit: contain;
-    height: 260px;
+    max-height: 350px;
+    width: 100%;
 }
 
 #post_show .chart_show_price {
-    width: 32%;
+    width: 100%;
     padding-top: 30px;
 }
 
@@ -94,12 +96,17 @@
 
 
 #post_show .post_show_state {
-    margin-top: 320px;
+    margin-top: 15px;
+    display: flex;
+
 }
 
 #post_show .post_show {
-    width: 100%;
-    padding:0 30px 20px;
+    width: 65%;
+}
+
+#post_show .side_bar {
+    width: 35%;
 }
 
 #post_show .post_show_card {

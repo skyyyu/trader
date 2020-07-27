@@ -1,6 +1,6 @@
 #new_post .post_back {
     width: 75%;
-    margin-left: auto;
+    margin: auto;
     background-color: #fff;
 }
 
@@ -9,7 +9,7 @@
 }
 
 #new_post .large_width {
-    padding: 20px 40px 80px;
+    padding: 20px 0 80px;
 }
 
 #new_post .form_field {

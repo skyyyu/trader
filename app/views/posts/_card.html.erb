@@ -1,8 +1,15 @@
 <%= link_to "/posts/#{post.id}", class: "post_card_link" do %> 
     <div class="post_card">
-        <div class="user_img">
+        <div class="post_img">
+            <% if post.img? %>
+                <%= image_tag post.img.url %>
+            <% else %>
+                <%= image_tag"no-image.png", id: "assets" %>
+            <% end %>
+        </div>
+        <div class="post_user">
             <object>
-                <a href="<%= "/users/#{post.user.id}" %>">
+                <a href="<%= "/users/#{post.user.id}" %>" class="user_img">
                     <% if post.user.image? %>
                         <%= image_tag post.user.image.url %>
                     <% else %>
@@ -10,22 +17,15 @@
                     <% end %>
                 </a>
             </object>
+            <object>
+                <a href="<%= "/users/#{post.user.id}" %>" class="post_name">
+                    <%= post.user.name %>
+                </a>
+            </object>
         </div>
         <div class="post_text">
-            <div class="post_user_name">
-                <object>
-                    <a href="<%= "/users/#{post.user.id}" %>">
-                        <%= post.user.name %>
-                    </a>
-                    <div class="card_date">
-                        <%= post.date %>
-                    </div>
-                </object>
-            </div>
-            <div class="card_display">
-                <div class="card_title">
-                    <%= post.title %>
-                </div>
+            <div class="card_title">
+                <%= post.title %>
             </div>
             <div class="card_bottom">
                 <div class="everyone_common">
@@ -44,6 +44,9 @@
                             </object>
                         <% end %>
                         <%= post.liked_users.count %>
+                    </div>
+                    <div class="card_date">
+                        <%= post.date %>
                     </div>
                 </div>
             </div>

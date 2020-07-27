@@ -30,23 +30,10 @@
           
           <div class="header_right">
             <% if user_signed_in? %>
-              <thead>
-                <div class="search_form">
-                  <%= search_form_for @search do |f| %>
-                    <div class="search_field">
-                      <%= f.search_field :title_cont, placeholder: 'キーワード検索' %>
-                      <%= f.submit "検索" %>
-                    </div>
-                  <% end %>
-
-                  <%= search_form_for @search ,url: "/users" do |f| %>
-                    <div class="search_field">
-                      <%= f.search_field :name_cont, placeholder: 'ユーザー検索' %>
-                      <%= f.submit "検索" %>
-                    </div>
-                  <% end %>
-                </div>
-              </thead>
+              
+              <div class="new_post_link">
+                <%= link_to '投稿する', new_post_path %>
+              </div>
               <div class="header_icon">
                 <a href="<%= "/users/#{current_user.id}" %>" class="header_user_img">
                   <% if current_user.image? %>
@@ -55,14 +42,7 @@
                       <%= image_tag"no-image.png", id: "assets" %>
                   <% end %>
                 </a>
-                <a href="<%= "/users/#{current_user.id}" %>" class="header_user_name">
-                  <%= current_user.name %>
-                  </a>
               </div>
-              <div class="new_post_link">
-                <%= link_to '投稿する', new_post_path %>
-              </div>
-              <%= line_chart Post.where(user_id: current_user.id).group(:date).sum(:price), autoSkip: true, suggestedMax: 5 %>
             <% else %>
               <a href="/users/sign_up">新規作成</a>
               <a href="/users/sign_in">ログイン</a>
@@ -71,22 +51,23 @@
         </div>
       </header>
     </div>
+    
     <div class="wrapper">
       <%= yield %>
     </div>
     <script>
-      var ctx = document.getElementById('myChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: date ,
-          datasets: [{
-            label: '収益',
-            data: price ,
-            backgroundColor: "rgba(153,255,51,0.4)"
-          }]
-        }
-      });
+      // var ctx = document.getElementById('myChart').getContext('2d');
+      // var myChart = new Chart(ctx, {
+      //   type: 'line',
+      //   data: {
+      //     labels: date ,
+      //     datasets: [{
+      //       label: '収益',
+      //       data: price ,
+      //       backgroundColor: "rgba(153,255,51,0.4)"
+      //     }]
+      //   }
+      // });
 
     </script>
   </body>

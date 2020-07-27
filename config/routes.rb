@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   root 'posts#timeline'
   get 'likes/create'
   get 'likes/destroy'
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
